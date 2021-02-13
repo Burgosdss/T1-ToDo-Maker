@@ -1,0 +1,50 @@
+body {
+    background: radial-gradient(#e5e5e5 #ffffff, #e5e5e5);  
+}
+
+.checkbox, .radio {
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 0;
+    
+}
+
+
+h2 {
+    color: rgb(255, 255, 255);
+    background-color: #5c90aa;
+    padding-bottom: 1rem;
+}
+
+ul {
+    list-style: none;
+    text-align: left;
+}
+
+li {
+    padding: 0px .25rem 1px;
+    display: grid;
+    display: inline;
+    align-items: center;
+
+}
+
+.ToDoList {
+    display: inline-flex;
+    padding-right: .75rem;
+}
+
+
+
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0 .25rem 0;
+}
+
+.badge {
+    color: black;
+    background-color: white;
+}
+
+

@@ -1,0 +1,32 @@
+.NavBar {
+    display: flex;
+    margin: 0 0 20px;
+    line-height: .50;
+}
+
+.NavBar-link, .user{
+    margin: 0 10px;
+    color: #ffffff;
+    font-size: 1.75rem;
+    text-decoration: underline;
+}
+
+Link:hover {
+    text-decoration: underline;
+    color: #e0ffff;
+    cursor: pointer;
+}
+
+.NavBar-welcome {
+    color: #ffffff;
+    font-size: 1.75rem;
+}
+
+div.NavBar {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-self: right;
+    margin-right: 6rem;
+    color: #ffffff;
+}

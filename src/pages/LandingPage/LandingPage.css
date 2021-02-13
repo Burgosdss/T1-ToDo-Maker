@@ -1,0 +1,13 @@
+.LandingPage {
+    min-height: 100%;
+    margin: 0 auto;
+}
+
+a.LandLink {
+    font-size: 4rem;
+    margin-top: 10rem;
+}
+
+p#title {
+  padding-top: 10rem;
+} 

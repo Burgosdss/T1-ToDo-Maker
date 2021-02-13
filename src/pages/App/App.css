@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #222;
+  height: 50px;
+  padding: 20px;
+  font-size: 40px;
+  color: white;
+  text-align: center;
+}
+
+#sticky-footer {
+  background-color: black;
+  min-height: 10vh;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+} 
