@@ -1,10 +1,11 @@
 # Set Up
 1. Download the Code
 2. Extract the folder from the .zipfile and cdinto it
-3. Install the Node modules: $ npm i
+3. Install the Node modules: $ yarn i
 4. Open the code in VS Code: $ code .
-5. Start the dev server: $ npm start  
-6. Back server: $ nodemon server
+5. Start the dev server: $ yarn start
+6. Build client: $ yarn build  
+7. Back server: $ nodemon server.sj
 
 # Technologies Used
 * Mongo.

@@ -1,32 +1,29 @@
 import React, { Component} from 'react';
-import './App.css';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import SignupPage from '../SignupPage/SignupPage';
-import LoginPage from '../LoginPage/LoginPage';
-import userService from '../../utils/userService';
-import UserSummaryPage from '..//UserSummaryPage/UserSummaryPage';
-import LandingPage from '../LandingPage/LandingPage';
-import NavBar from '../../components/NavBar/NavBar';
-import NewToDoPage from '../NewToDoPage/NewToDoPage';
+import { BrowserRouter } from 'react-router-dom';
 
+import { UserService } from 'utils';
+import { AppRouter } from 'pages';
+import { NavBar } from 'components';
+
+import 'pages/App/App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: userService.getUser(),
+      user: UserService.getUser(),
       todos: [],
     };
   }
 
   handleSignupOrLogin = () => {
     this.setState({
-      user: userService.getUser()
+      user: UserService.getUser()
     });
   }
 
   handleLogout = () => {
-    userService.logout();
+    UserService.logout();
     this.setState({
       user: null
     });
@@ -37,62 +34,22 @@ class App extends Component {
   }
 
   render() {
+    const { user, todos } = this.state
     return (
       <div className="App">
-      <header className="App-header" style={{ fontSize: "2.5rem", color: "#ffffff" }}>Task Maker<NavBar
-        user={this.state.user}
-        handleLogout={this.handleLogout}
-      /></header> 
-      <div id="App-Parent">
-        <Switch>
-        <Route exact path="/" render={({ history }) =>
-              <LandingPage
-                user={this.state.user}
-                history={history}
-              />
-            }
+        <BrowserRouter>
+          <NavBar user={this.state.user} handleLogout={this.handleLogout}/>
+          <div id="App-Parent">
+            <AppRouter 
+              user={user} 
+              todos={todos} 
+              handleUpdateTodos={this.handleUpdateTodos} 
+              handleSignupOrLogin={this.handleSignupOrLogin} 
+              handleLogout={this.handleLogout} 
             />
-            <Route exact path='/signup' render={({ history }) => 
-              <SignupPage
-                history={history}
-                handleSignupOrLogin={this.handleSignupOrLogin}
-                
-              />
-            }/>
-            <Route exact path='/login' render={({ history }) => 
-              <LoginPage
-                history={history}
-                handleSignupOrLogin={this.handleSignupOrLogin}
-              />
-            }/>
-            <Route exact path='/newtodo' render={({ history }) => (
-                      userService.getUser() ?
-                        <NewToDoPage
-                          history={history}
-                          user={this.state.user}
-                        />
-                        :
-                        <Redirect to="/login" />
-                    )
-                    }
-                    />
-            <Route exact path='/user' render={({ history }) => (
-                userService.getUser() ?
-                  <UserSummaryPage
-                    {...this.props}
-                    history={history}
-                    user={this.state.user}
-                    todos={this.state.todos}
-                    handleUpdateTodos={this.handleUpdateTodos}
-                  />
-                  :
-                  <Redirect to="/login" />
-              )
-            }
-              />
-        </Switch>
-        </div>
-        <footer id="sticky-footer"></footer>
+          </div>
+          <footer id="sticky-footer"></footer>
+        </BrowserRouter>
       </div>
     )
   }
