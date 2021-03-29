@@ -11,11 +11,12 @@ router.put('/:id', todosCtrl.editTodo);
 router.put('/update/:id', todosCtrl.updateToDo);
 
 
-function checkAuth(req, res, next) {
-    if (req.user) return next();
-    return res.status(401).json({
-        msg: "Not Authorized!"
+function checkAuth(request, response, next) {
+    if (request.user) return next();
+    return response.status(401).json({
+        message: "Not Authorized!"
     });
 }
+
 
 module.exports = router;

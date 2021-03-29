@@ -9,43 +9,40 @@ module.exports = {
   
 };
 
-
-async function updateToDo(req, res) {
-  await Todo.findByIdAndUpdate(req.params.id, req.body, {
+async function updateToDo(request, response) {
+  await Todo.findByIdAndUpdate(request.params.id, request.body, {
     new: true
-  }, function (err, todo) {
-    res.json(todo);
+  }, function (error, todo) {
+    response.json(todo);
+  });
+}
 
-  })
-};
-
-async function create(req, res) {
+async function create(request, response) {
   try {
-    const todo = new Todo(req.body);
-    todo.user = req.params.userid;
+    const todo = new Todo(request.body);
+    todo.user = request.params.userid;
     await todo.save();
-    show(req, res);
-  } catch (err) {
-    res.json({
-      err
+    show(request, response);
+  } catch (error) {
+    response.json({
+      error
     });
   }
 }
 
-
-async function show(req, res) {
+async function show(request, response) {
   const todos = await Todo.find({
-    user: req.params.userid
+    user: request.params.userid
   });
-  res.json(todos);
+  response.json(todos);
 }
 
-async function deleteTodo(req, res) {
-  await Todo.findByIdAndDelete(req.params.id);
-  show(req, res);
+async function deleteTodo(request, response) {
+  await Todo.findByIdAndDelete(request.params.id);
+  show(request, response);
 }
 
-async function editTodo(req, res) {
-  await Todo.findByIdAndUpdate(req.params.id, req.body);
-  show(req, res);
+async function editTodo(request, response) {
+  await Todo.findByIdAndUpdate(request.params.id, request.body);
+  show(request, response);
 }
