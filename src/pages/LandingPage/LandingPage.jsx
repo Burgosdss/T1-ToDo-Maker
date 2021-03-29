@@ -18,7 +18,7 @@ const titleStyles = {
 };
 
 const LandingPage = (props) => {
-  const UserisLogged = () => (
+  const UserIsLogged = () => (
     <div className="LandingPage">
       <Link to="/newtodo" style={newTodoStyles}>
         Add New To Do List Item{" "}
@@ -32,7 +32,7 @@ const LandingPage = (props) => {
       </Link>
     </div>
   );
-  const UserisLoggedOut = () => <div></div>;
+  const UserIsLoggedOut = () => <div></div>;
   const Landing = () => {
     return props.user ? <UserIsLogged /> : <UserIsLoggedOut />;
   };
