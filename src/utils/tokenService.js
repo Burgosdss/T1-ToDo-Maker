@@ -25,8 +25,7 @@ function getToken() {
 
 function getUserFromToken() {
   const token = getToken();
-  const splitToken = JSON.parse(atob(token.split('.')[1])).user
-  return token ? splitToken : null;
+  return token ? JSON.parse(atob(token.split('.')[1])).user : null;
 };
 
 const TokenService = {
