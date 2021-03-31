@@ -6,11 +6,12 @@ import userService from "../../utils/userService";
 
 const initialState = {
   email: "",
-  password: "",
+  password: ""
 };
 
 class LoginPage extends Component {
-  state = initialState;
+  
+  state = initialState
 
   handleChange = (event) => {
     const { name, value } = event.target;
