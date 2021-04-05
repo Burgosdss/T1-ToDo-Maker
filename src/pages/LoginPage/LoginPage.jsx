@@ -32,7 +32,7 @@ class LoginPage extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    
     return (
       <div className="LoginPage">
         <header className="header-footer">Log In</header>
