@@ -62,7 +62,7 @@ class SignupForm extends Component {
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Confirm Password" value={passwordConfirmation} name="passwordConf" onChange={this.handleChange} />
+              <input type="password" className="form-control" placeholder="Confirm Password" value={passwordConfirmation} name="passwordConfirmation" onChange={this.handleChange} />
             </div>
           </div>
           <div className="form-group">
