@@ -1,19 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import UserSummary from "../../components/UserSummary/UserSummary";
 
-class UserSummaryPage extends Component {
-  render() {
-    return (
-      <div className="UserSummaryPage">
-        <UserSummary
-          {...this.props}
-          user={this.props.user}
-          todos={this.props.todos}
-          handleUpdateTodos={this.props.handleUpdateTodos}
-        />
-      </div>
-    );
-  }
+function UserSummaryPage(props) {
+  return (
+    <div className="UserSummaryPage">
+      <UserSummary
+        {...props}
+        user={props.user}
+        todos={props.todos}
+        handleUpdateTodos={props.handleUpdateTodos}
+      />
+    </div>
+  );
 }
 
 export default UserSummaryPage;

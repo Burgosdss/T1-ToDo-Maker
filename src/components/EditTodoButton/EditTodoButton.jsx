@@ -1,76 +1,63 @@
-import React, { Component } from 'react';
+import React, { useState } from "react";
 
-const initialState = {
-  text: '', 
-  inputText: '', 
-  mode:'view'
-}
+function EditTodoButton(props) {
+  const [state, setState] = useState({
+    text: "",
+    inputText: "",
+    mode: "view"
+  });
 
-class EditTodoButton extends Component {
-    constructor(props){
-        super(props)
-        this.state = initialState
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSave = this.handleSave.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
-      }
-      
-      handleChange(event) {
-        const { value } = event.target
-        this.setState({ inputText: value });
-      }
-      
-      handleSave() {
-        this.setState(initialState);
-      }
-    
-      handleEdit() {
-        const editMode = { mode: 'edit' }
-        this.setState(editMode);
-      }
-      
-      renderInputField() {
-        const modeOn = this.state.mode !== 'view'
-        return  modeOn ? (
-          <p>
-            <input
-            onChange={this.handleChange}
-            value={this.state.inputText} />
-          </p>
-        ) : <></>
-      }
-      
-      renderButton() {
-        const modeOn = this.state.mode === 'view'
-        return modeOn ? (
-          <button onClick={this.handleEdit}>
-            <span role="img" aria-label="edit">✏️</span>
-          </button>
-        ) : ( 
-          <button onClick={this.onClick}>
-            Save
-          </button> 
-        )
-      }
-      
-      onClick = () => {
-        this.handleSave();
-        this.props.refreshContent();
-        this.props.handleEditToDo(this.props.todo, this.state.inputText);
-      }
-      
-      render () {
-        return (
-          <div>
-            <p>{this.state.text}</p>
-            {this.renderInputField(this.props.todo)}
-            {this.renderButton()}
-          </div>
-        );
-      }
+  function handleChange(event) {
+    const { value } = event.target;
+    setState({ inputText: value });
   }
 
+  function handleSave() {
+    setState(state);
+  }
 
+  function handleEdit() {
+    const editMode = { mode: "edit" };
+    setState(editMode);
+  }
 
+  function renderInputField() {
+    const modeOn = state.mode !== "view";
+    return modeOn ? (
+      <p>
+        <input onChange={handleChange} value={state.inputText} />
+      </p>
+    ) : (
+      <></>
+    );
+  }
+
+  function onClick() {
+    handleSave();
+    props.refreshContent();
+    props.handleEditToDo(props.todo, state.inputText);
+  }
+
+  function renderButton() {
+    const modeOn = state.mode === "view";
+    return modeOn ? (
+      <button onClick={handleEdit}>
+        <span role="img" aria-label="edit">
+          ✏️
+        </span>
+      </button>
+    ) : (
+      <button onClick={onClick}>Save</button>
+    );
+  }
+
+  return (
+    <div>
+      <p>{state.text}</p>
+      {renderInputField(props.todo)}
+      {renderButton()}
+    </div>
+  );
+}
 
 export default EditTodoButton;

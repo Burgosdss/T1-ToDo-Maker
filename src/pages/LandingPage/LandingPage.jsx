@@ -4,17 +4,17 @@ import "./LandingPage.css";
 
 const newTodoStyles = {
   color: "#000000",
-  fontSize: "2rem",
+  fontSize: "2rem"
 };
 
 const userStyles = {
   fontSize: "3rem",
-  color: "#000000",
+  color: "#000000"
 };
 
 const titleStyles = {
   fontSize: "8rem",
-  color: "#000000",
+  color: "#000000"
 };
 
 const LandingPage = (props) => {
@@ -32,17 +32,20 @@ const LandingPage = (props) => {
       </Link>
     </div>
   );
+  
   const UserIsLoggedOut = () => <div></div>;
   const Landing = () => {
     return props.user ? <UserIsLogged /> : <UserIsLoggedOut />;
-  };
+  }
 
   return (
     <div>
-      <p id="title" style={titleStyles}>Welcome to Task Maker</p>
+      <p id="title" style={titleStyles}>
+        Welcome to Task Maker
+      </p>
       <Landing />
     </div>
   );
-};
+}
 
 export default LandingPage;

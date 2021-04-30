@@ -1,80 +1,108 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import userService from '../../utils/userService';
+import userService from "../../utils/userService";
 
-const initialState = {
-  name: '',
-  email: '',
-  password: '',
-  passwordConfirmation: ''
-}
+function SignupForm(props) {
+  const [state, setState] = useState({
+    name: "",
+    email: "",
+    password: "",
+    passwordConfirmation: ""
+  });
 
-class SignupForm extends Component {
-
-  state = initialState
-
-  handleChange = (event) => {
-    const { name, value } = event.target
-    this.props.updateMessage('');
-    this.setState({
-      [name]: value
-    })
+  function handleChange(event) {
+    setState((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value
+    }));
   }
 
-  handleSubmit = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await userService.signup(this.state);
-      // Successfully Signed up 
-      this.props.handleSignupOrLogin();
-      this.props.history.push('/');
+      await userService.signup(state);
+      // Successfully Signed up
+      props.handleSignupOrLogin();
+      props.history.push("/");
     } catch (error) {
-      // Invalid user data 
-      this.props.updateMessage(error.message);
+      // Invalid user data
+      props.updateMessage(error.message);
     }
   }
 
-  isFormInvalid() {
-    return !(this.state.name && this.state.email && this.state.password === this.state.passwordConfirmation);
+  function isFormInvalid() {
+    return !(
+      state.name &&
+      state.email &&
+      state.password === state.passwordConfirmation
+    );
   }
 
-  render() {
-    const { name, email, password, passwordConfirmation } = this.state
-    return (
-      <div>
-        <header className="header-footer">Sign Up</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="text" className="form-control" placeholder="Name" value={name} name="name" onChange={this.handleChange} />
-            </div>
+  return (
+    <div>
+      <header className="header-footer">Sign Up</header>
+      <form className="form-horizontal" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <div className="col-sm-12">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Name"
+              value={state.name}
+              name="name"
+              onChange={handleChange}
+            />
           </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="email" className="form-control" placeholder="Email" value={email} name="email" onChange={this.handleChange} />
-            </div>
+        </div>
+        <div className="form-group">
+          <div className="col-sm-12">
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Email"
+              value={state.email}
+              name="email"
+              onChange={handleChange}
+            />
           </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Password" value={password} name="password" onChange={this.handleChange} />
-            </div>
+        </div>
+        <div className="form-group">
+          <div className="col-sm-12">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Password"
+              value={state.password}
+              name="password"
+              onChange={handleChange}
+            />
           </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Confirm Password" value={passwordConfirmation} name="passwordConfirmation" onChange={this.handleChange} />
-            </div>
+        </div>
+        <div className="form-group">
+          <div className="col-sm-12">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Confirm Password"
+              value={state.passwordConfirmation}
+              name="passwordConfirmation"
+              onChange={handleChange}
+            />
           </div>
-          <div className="form-group">
-            <div className="col-sm-12 text-center">
-              <button className="btn btn-default" disabled={this.isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
-              <Link to='/'>Cancel</Link>
-            </div>
+        </div>
+        <div className="form-group">
+          <div className="col-sm-12 text-center">
+            <button className="btn btn-default" disabled={isFormInvalid()}>
+              Sign Up
+            </button>
+            &nbsp;&nbsp;
+            <Link to="/">Cancel</Link>
           </div>
-        </form>
-      </div>
-    )
-  }
-};
+        </div>
+      </form>
+    </div>
+  );
+}
 
 export default SignupForm;
