@@ -8,8 +8,10 @@ function EditTodoButton(props) {
   });
 
   function handleChange(event) {
-    const { value } = event.target;
-    setState({ inputText: value });
+    setState((prevState) => ({
+      ...prevState,
+      inputText: event.target.value
+    }));
   }
 
   function handleSave() {

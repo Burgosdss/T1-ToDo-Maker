@@ -12,21 +12,26 @@ export default function App() {
     todos: []
   });
 
-  const handleSignupOrLogin = () => {
-    setState({
+  function handleSignupOrLogin() {
+    setState((prevState) => ({
+      ...prevState,
       user: UserService.getUser()
-    });
+    }));
   }
 
-  const handleLogout = () => {
+  function handleLogout() {
     UserService.logout();
-    setState({
-      user: null
-    });
+    setState((prevState) => ({
+      ...prevState,
+      user: UserService.getUser()
+    }));
   }
 
-  const handleUpdateTodos = (todos) => {
-    setState({ ...state.todos, todos });
+  function handleUpdateTodos(todos) {
+    setState((prevState) => ({
+      ...prevState,
+      todos
+    }));
   }
 
   return (

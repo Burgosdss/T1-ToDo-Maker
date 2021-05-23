@@ -5,17 +5,17 @@ import "./LandingPage.css";
 const newTodoStyles = {
   color: "#000000",
   fontSize: "2rem"
-};
+}
 
 const userStyles = {
   fontSize: "3rem",
   color: "#000000"
-};
+}
 
 const titleStyles = {
   fontSize: "8rem",
   color: "#000000"
-};
+}
 
 const LandingPage = (props) => {
   const UserIsLogged = () => (
@@ -32,7 +32,6 @@ const LandingPage = (props) => {
       </Link>
     </div>
   );
-  
   const UserIsLoggedOut = () => <div></div>;
   const Landing = () => {
     return props.user ? <UserIsLogged /> : <UserIsLoggedOut />;

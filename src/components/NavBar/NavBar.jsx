@@ -5,12 +5,11 @@ import "./NavBar.css";
 const styles = {
   fontSize: "3vmin",
   fontWeight: "bold"
-}
+};
 
-const headerStyles = { fontSize: "2.5rem", color: "#ffffff" }
+const headerStyles = { fontSize: "2.5rem", color: "#ffffff" };
 
 const NavBar = (props) => {
-
   const UserIsLogged = () => (
     <div style={styles}>
       <Link to="" className="NavBar-link" onClick={props.handleLogout}>
@@ -40,7 +39,7 @@ const NavBar = (props) => {
 
   const Nav = () => {
     return props.user ? <UserIsLogged /> : <UserIsLoggedOut />;
-  }
+  };
 
   return (
     <header className="App-header" style={headerStyles}>
@@ -50,6 +49,6 @@ const NavBar = (props) => {
       </div>
     </header>
   );
-}
+};
 
 export default NavBar;

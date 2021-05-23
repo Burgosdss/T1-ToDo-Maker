@@ -9,7 +9,6 @@ body {
     
 }
 
-
 h2 {
     color: rgb(255, 255, 255);
     background-color: #5c90aa;
@@ -33,8 +32,6 @@ li {
     display: inline-flex;
     padding-right: .75rem;
 }
-
-
 
 button {
     background-color: transparent;

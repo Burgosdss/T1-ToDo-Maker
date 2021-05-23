@@ -1,4 +1,4 @@
-const Todo = require('../models/todo');
+const Todo = require("../models/todo");
 
 module.exports = {
   create,
@@ -6,15 +6,19 @@ module.exports = {
   deleteTodo,
   editTodo,
   updateToDo
-  
 };
 
 async function updateToDo(request, response) {
-  await Todo.findByIdAndUpdate(request.params.id, request.body, {
-    new: true
-  }, function (error, todo) {
-    response.json(todo);
-  });
+  await Todo.findByIdAndUpdate(
+    request.params.id,
+    request.body,
+    {
+      new: true
+    },
+    function (error, todo) {
+      response.json(todo);
+    }
+  );
 }
 
 async function create(request, response) {

@@ -6,15 +6,17 @@ import userService from "../../utils/userService";
 function LoginPage(props) {
   const [state, setState] = useState({
     email: "",
-    password: ""
+    pw: ""
   });
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setState({ [name]: value });
-  };
+  function handleChange(event) {
+    setState((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value
+    }));
+  }
 
-  const handleSubmit = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
     try {
       await userService.login(state);
@@ -25,7 +27,7 @@ function LoginPage(props) {
       // Invalid user data (probably duplicate email)
       alert("Invalid Credentials!!!");
     }
-  };
+  }
 
   return (
     <div className="LoginPage">
@@ -37,7 +39,7 @@ function LoginPage(props) {
               type="email"
               className="form-control"
               placeholder="Email"
-              value={state.email}
+              value={props.email}
               name="email"
               onChange={handleChange}
             />
@@ -49,8 +51,8 @@ function LoginPage(props) {
               type="password"
               className="form-control"
               placeholder="Password"
-              value={state.password}
-              name="password"
+              value={props.pw}
+              name="pw"
               onChange={handleChange}
             />
           </div>

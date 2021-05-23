@@ -4,7 +4,7 @@ import todoService from "../../utils/todoService";
 
 function ToDoForm(props) {
   const [state, setState] = useState({
-    text: "",
+    text: ""
   });
 
   function isFormInvalid() {
@@ -12,9 +12,10 @@ function ToDoForm(props) {
   }
 
   function handleChange(event) {
-    setState({ 
-      [event.target.name]: event.target.value 
-    });
+    setState((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value
+    }));
   }
 
   async function handleAddToDo(event) {
@@ -22,9 +23,7 @@ function ToDoForm(props) {
     try {
       await todoService.create(state, props.user);
       props.history.push("/user");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 
   return (
