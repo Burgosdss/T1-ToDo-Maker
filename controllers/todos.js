@@ -47,6 +47,8 @@ async function deleteTodo(request, response) {
 }
 
 async function editTodo(request, response) {
-  await Todo.findByIdAndUpdate(request.params.id, request.body);
-  show(request, response);
+  try {
+    await Todo.findByIdAndUpdate(request.params.id, request.body);
+    show(request, response);
+  } catch (error) {}
 }

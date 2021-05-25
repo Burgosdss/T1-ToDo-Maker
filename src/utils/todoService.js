@@ -1,7 +1,7 @@
 import { TokenService } from "utils";
 const BASE_URL = "/api/todos";
 
-// client side function to create a todo
+// Client side function to create a todo
 function create(todo, user) {
   const url = BASE_URL + `/${user._id}`;
   const options = {
@@ -15,13 +15,13 @@ function create(todo, user) {
   return fetch(url, options).then((response) => response.json());
 }
 
-// client side function to get/ render todos for a specific user
+// Client side function to get/ render todos for a specific user
 function index(user) {
   const url = BASE_URL + `/${user._id}`;
   return fetch(url).then((response) => response.json());
 }
 
-// client side function to delete a todo
+// Client side function to delete a todo
 function deleteToDo(todo) {
   const url = BASE_URL + `/${todo._id}`;
   const options = {
@@ -35,7 +35,7 @@ function deleteToDo(todo) {
   return fetch(url, options).then((response) => response.json());
 }
 
-// client side function to toggle a todo done or not done
+// Client side function to toggle a todo done or not done
 function doneToDo(todo) {
   const url = BASE_URL + `/update/${todo._id}`;
   const options = {
@@ -49,9 +49,9 @@ function doneToDo(todo) {
   return fetch(url, options).then((response) => response.json());
 }
 
-// client side function to edit a todo
+// Client side function to edit a todo
 function editToDo(todo, updatedTodo) {
-  const url = BASE_URL + `/${todo._id}`;
+  const url = BASE_URL + `/${todo}`;
   const options = {
     method: "PUT",
     headers: {

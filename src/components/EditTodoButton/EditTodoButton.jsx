@@ -3,22 +3,21 @@ import React, { useState } from "react";
 function EditTodoButton(props) {
   const [state, setState] = useState({
     text: "",
-    inputText: "",
     mode: "view"
   });
 
+  const [inputText, setInputTex] = useState("");
+
   function handleChange(event) {
-    setState((prevState) => ({
-      ...prevState,
-      inputText: event.target.value
-    }));
+    setInputTex(event.target.value);
   }
 
   function handleSave() {
-    setState(state);
+    setState({ text: "", mode: "view" });
   }
 
   function handleEdit() {
+    props.handleEditToDo(props.idx, inputText);
     const editMode = { mode: "edit" };
     setState(editMode);
   }
@@ -27,7 +26,7 @@ function EditTodoButton(props) {
     const modeOn = state.mode !== "view";
     return modeOn ? (
       <p>
-        <input onChange={handleChange} value={state.inputText} />
+        <input onChange={(event) => handleChange(event)} value={inputText} />
       </p>
     ) : (
       <></>
@@ -36,14 +35,14 @@ function EditTodoButton(props) {
 
   function onClick() {
     handleSave();
+    props.handleEditToDo(props.idx, inputText);
     props.refreshContent();
-    props.handleEditToDo(props.todo, state.inputText);
   }
 
   function renderButton() {
     const modeOn = state.mode === "view";
     return modeOn ? (
-      <button onClick={handleEdit}>
+      <button onClick={() => handleEdit()}>
         <span role="img" aria-label="edit">
           ✏️
         </span>

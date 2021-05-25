@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 
-// custom middleware, checks for token, replace with '', decode user
+// Custom middleware, checks for token, replace with '', decode user
 module.exports = function (request, response, next) {
   let token =
     request.get("Authorization") || request.query.token || request.body.token;

@@ -1,41 +1,36 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./UserSummary.css";
 import todoService from "../../utils/todoService";
 import EditTodoButton from "../EditTodoButton/EditTodoButton";
 
-const initialState = {
-  todo: {
-    done: false
-  }
-}
+function UserSummary(props) {
+  const [state, setState] = useState({
+    todo: {
+      done: false
+    }
+  });
 
-class UserSummary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = initialState;
-  }
+  useEffect(() => {
+    refreshContent();
+  }, []);
 
-  async componentDidMount() {
-    this.refreshContent();
-  }
-
-  refreshContent = async () => {
-    const todos = await todoService.index(this.props.user);
-    this.props.handleUpdateTodos(todos);
+  async function refreshContent() {
+    const todos = await todoService.index(props.user);
+    props.handleUpdateTodos(todos);
   }
 
-  handleDeleteToDo = async (todo) => {
+  async function handleDeleteToDo(todo) {
     await todoService.deleteToDo(todo);
-    this.refreshContent();
+    refreshContent();
   }
 
-  handleEditToDo = async (todo, updatedToDo) => {
+  async function handleEditToDo(todo, updatedToDo) {
     await todoService.editToDo(todo, updatedToDo);
-    this.refreshContent();
+    refreshContent();
   }
 
-  handleUpdateToDo = async (todo) => {
+  async function handleUpdateToDo(todo) {
     let update = todo;
     if (update.done) {
       update.done = false;
@@ -43,34 +38,36 @@ class UserSummary extends Component {
       update.done = true;
     }
     await todoService.doneToDo(todo);
-    const todos = await todoService.index(this.props.user);
-    this.props.handleUpdateTodos(todos);
+    const todos = await todoService.index(props.user);
+    props.handleUpdateTodos(todos);
   }
 
-  TodoRows = () => {
-    const { todos } = this.props;
+  function TodoRows() {
+    const { todos } = props;
     const todoRows = todos.map((todo, index) => (
       <ul key={index}>
         <li className="ToDoList">
           <input
             type="checkbox"
-            defaultValue={this.state.done}
+            defaultValue={setState.done}
             name="done"
-            checked={todo.done}
-            onChange={() => this.handleUpdateToDo(todo)}
+            checked={state.done}
+            onChange={() => handleUpdateToDo(todo)}
           />
           &nbsp;&nbsp;Done&nbsp;&nbsp;
-          <button onClick={() => this.handleDeleteToDo(todo)}>
+          <button onClick={() => handleDeleteToDo(todo)}>
             <span role="img" aria-label="delete">
               🚯
             </span>
           </button>{" "}
           &nbsp;&nbsp;
           <EditTodoButton
-            {...this.props}
-            refreshContent={this.refreshContent}
-            handleEditToDo={this.handleEditToDo}
-            todo={todo}
+            {...props}
+            refreshContent={refreshContent}
+            handleUpdateToDo={handleUpdateToDo}
+            handleEditToDo={handleEditToDo}
+            idx={todo._id}
+            todo={state.todo}
           />
           &nbsp;&nbsp;
           <span className="badge">{index + 1}</span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -82,28 +79,26 @@ class UserSummary extends Component {
     return todoRows;
   }
 
-  render() {
-    return (
-      <div className="usersummary">
-        <br />
-        <div className="user-cards" style={{ justifyContent: "center" }}>
-          <div id="ToDoList">
-            <h3 className="header-footer">To Do List</h3>
-            <Link to="/newtodo">Add New To Do</Link>
-            <br />
-            {this.props.todos.length ? (
-              this.TodoRows()
-            ) : (
-              <h5 className="text-info">No To Do List Items Yet</h5>
-            )}
-          </div>
+  return (
+    <div className="usersummary">
+      <br />
+      <div className="user-cards" style={{ justifyContent: "center" }}>
+        <div id="ToDoList">
+          <h3 className="header-footer">To Do List</h3>
+          <Link to="/newtodo">Add New To Do</Link>
           <br />
+          {props.todos.length ? (
+            TodoRows()
+          ) : (
+            <h5 className="text-info">No To Do List Items Yet</h5>
+          )}
         </div>
         <br />
-        <br />
       </div>
-    );
-  }
+      <br />
+      <br />
+    </div>
+  );
 }
 
 export default UserSummary;

@@ -8,7 +8,7 @@ module.exports = {
   login
 };
 
-// function to sign up a user/ assign them a token
+// Function to sign up a user/ assign them a token
 async function signup(request, response) {
   const user = new User(request.body);
   try {
@@ -24,7 +24,7 @@ async function signup(request, response) {
   }
 }
 
-// function to login a user/ check or update a token
+// Function to login a user/ check or update a token
 async function login(request, response) {
   try {
     const user = await User.findOne({
@@ -53,7 +53,7 @@ async function login(request, response) {
   }
 }
 
-// jwt helper function
+// Jwt helper function
 function createJWT(user) {
   return jwt.sign(
     {
