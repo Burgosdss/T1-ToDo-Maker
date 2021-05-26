@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import userService from "modules/utils/userService";
 
-import userService from "../../utils/userService";
-
-function SignupForm(props) {
+export default function SignupForm(props) {
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -22,11 +21,11 @@ function SignupForm(props) {
     event.preventDefault();
     try {
       await userService.signup(state);
-      // Successfully Signed up
+      /* Successfully signed up */
       props.handleSignupOrLogin();
       props.history.push("/");
     } catch (error) {
-      // Invalid user data
+      /* Invalid user data */
       props.updateMessage(error.message);
     }
   }
@@ -104,5 +103,3 @@ function SignupForm(props) {
     </div>
   );
 }
-
-export default SignupForm;

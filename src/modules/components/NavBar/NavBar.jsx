@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import "./NavBar.css";
 
 const styles = {
@@ -9,7 +10,7 @@ const styles = {
 
 const headerStyles = { fontSize: "2.5rem", color: "#ffffff" };
 
-const NavBar = (props) => {
+export default function NavBar(props) {
   const UserIsLogged = () => (
     <div style={styles}>
       <Link to="" className="NavBar-link" onClick={props.handleLogout}>
@@ -50,5 +51,3 @@ const NavBar = (props) => {
     </header>
   );
 }
-
-export default NavBar;

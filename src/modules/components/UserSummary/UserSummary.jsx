@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./UserSummary.css";
-import todoService from "../../utils/todoService";
-import EditTodoButton from "../EditTodoButton/EditTodoButton";
+import todoService from "modules/utils/todoService";
+import EditTodoButton from "modules/components/EditTodoButton/EditTodoButton";
 
-function UserSummary(props) {
+import "./UserSummary.css";
+
+export default function UserSummary(props) {
   const [state, setState] = useState({
     todo: {
       done: false
@@ -100,5 +101,3 @@ function UserSummary(props) {
     </div>
   );
 }
-
-export default UserSummary;

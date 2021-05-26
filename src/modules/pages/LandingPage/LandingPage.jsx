@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import "./LandingPage.css";
 
 const newTodoStyles = {
@@ -17,7 +18,7 @@ const titleStyles = {
   color: "#000000"
 }
 
-const LandingPage = (props) => {
+export default function LandingPage(props) {
   const UserIsLogged = () => (
     <div className="LandingPage">
       <Link to="/newtodo" style={newTodoStyles}>
@@ -47,4 +48,3 @@ const LandingPage = (props) => {
   );
 }
 
-export default LandingPage;

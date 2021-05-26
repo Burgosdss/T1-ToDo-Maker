@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import SignupForm from "../../components/SignupForm/SignupForm";
+import SignupForm from "modules/components/SignupForm/SignupForm";
+
 import "./SignupPage.css";
 
-function SignupPage(props) {
+export default function SignupPage(props) {
   const [state, setState] = useState({
     message: ""
   });
@@ -18,5 +19,3 @@ function SignupPage(props) {
     </div>
   );
 }
-
-export default SignupPage;

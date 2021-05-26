@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { UserService } from "utils";
-import { AppRouter } from "pages";
-import { NavBar } from "components";
+import { UserService } from "modules/utils/";
+import { AppRouter } from "modules/pages";
+import { NavBar } from "modules/components/";
 
-import "pages/App/App.css";
+import "modules/pages/App/App.css";
 
 export default function App() {
   const [state, setState] = useState({

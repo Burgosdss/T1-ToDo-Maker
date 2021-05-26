@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./LoginPage.css";
-import userService from "../../utils/userService";
+import userService from "modules/utils/userService";
 
-function LoginPage(props) {
+import "./LoginPage.css";
+
+export default function LoginPage(props) {
   const [state, setState] = useState({
     email: "",
     pw: ""
@@ -20,11 +21,11 @@ function LoginPage(props) {
     event.preventDefault();
     try {
       await userService.login(state);
-      // Successfully Signed Up
+      /* Successfully Signed Up */
       props.handleSignupOrLogin();
       props.history.push("/");
     } catch (error) {
-      // Invalid user data (probably duplicate email)
+      /* Invalid user data (probably duplicate email) */
       alert("Invalid Credentials!!!");
     }
   }
@@ -69,4 +70,3 @@ function LoginPage(props) {
   );
 }
 
-export default LoginPage;

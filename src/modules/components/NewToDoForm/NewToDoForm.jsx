@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import todoService from "../../utils/todoService";
+import todoService from "modules/utils/todoService";
 
-function ToDoForm(props) {
+export default function ToDoForm(props) {
   const [state, setState] = useState({
     text: ""
   });
@@ -61,4 +61,3 @@ function ToDoForm(props) {
   );
 }
 
-export default ToDoForm;

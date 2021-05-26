@@ -1,7 +1,7 @@
 import React from "react";
-import UserSummary from "../../components/UserSummary/UserSummary";
+import UserSummary from "modules/components/UserSummary/UserSummary";
 
-function UserSummaryPage(props) {
+export default function UserSummaryPage(props) {
   return (
     <div className="UserSummaryPage">
       <UserSummary
@@ -13,5 +13,3 @@ function UserSummaryPage(props) {
     </div>
   );
 }
-
-export default UserSummaryPage;

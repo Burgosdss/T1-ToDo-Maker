@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function EditTodoButton(props) {
+export default function EditTodoButton(props) {
   const [state, setState] = useState({
     text: "",
     mode: "view"
@@ -61,4 +61,3 @@ function EditTodoButton(props) {
   );
 }
 
-export default EditTodoButton;

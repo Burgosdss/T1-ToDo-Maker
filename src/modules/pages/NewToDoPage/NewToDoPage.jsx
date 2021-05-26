@@ -1,8 +1,9 @@
 import React from "react";
-import NewToDoForm from "../../components/NewToDoForm/NewToDoForm";
+import NewToDoForm from "modules/components/NewToDoForm/NewToDoForm";
+
 import "./NewToDoPage.css";
 
-function NewToDoPage(props) {
+export default function NewToDoPage(props) {
   return (
     <div className="NewToDoPage" style={{}}>
       <br />
@@ -17,5 +18,3 @@ function NewToDoPage(props) {
     </div>
   );
 }
-
-export default NewToDoPage;
