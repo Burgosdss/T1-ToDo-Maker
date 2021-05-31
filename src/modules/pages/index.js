@@ -4,7 +4,7 @@ import SignupPage from "modules/pages/SignupPage/SignupPage";
 import LoginPage from "modules/pages/LoginPage/LoginPage";
 import UserSummaryPage from "modules/pages/UserSummaryPage/UserSummaryPage";
 import LandingPage from "modules/pages/LandingPage/LandingPage";
-import NewToDoPage from "modules/pages/NewToDoPage/NewToDoPage";
+
 
 export {
   App,
@@ -13,5 +13,4 @@ export {
   LoginPage,
   UserSummaryPage,
   LandingPage,
-  NewToDoPage,
 }

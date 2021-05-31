@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import todoService from "modules/utils/todoService";
 import EditTodoButton from "modules/components/EditTodoButton/EditTodoButton";
 
@@ -9,16 +8,37 @@ export default function UserSummary(props) {
   const [state, setState] = useState({
     todo: {
       done: false
-    }
+    },
+    text: ""
   });
 
   useEffect(() => {
     refreshContent();
   }, []);
 
+  // function isFormInvalid() {
+  //   return !state.text;
+  // }
+
+  function handleChange(event) {
+    setState((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value
+    }));
+  }
+
   async function refreshContent() {
     const todos = await todoService.index(props.user);
     props.handleUpdateTodos(todos);
+  }
+
+  async function handleAddToDo(event) {
+    event.preventDefault();
+    try {
+      await todoService.create(state, props.user);
+      props.history.push("/user");
+      refreshContent();
+    } catch (error) {}
   }
 
   async function handleDeleteToDo(todo) {
@@ -83,10 +103,24 @@ export default function UserSummary(props) {
   return (
     <div className="usersummary">
       <br />
+      <br />
+      <br />
+      <form className="form-horizontal" onSubmit={handleAddToDo}>
+        <div className="form-group Todo">
+          <div className="col-sm-12">
+            <input
+              className="form-control-todo"
+              name="text"
+              placeholder="What needs to be done?"
+              value={state.text}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+      </form>
       <div className="user-cards" style={{ justifyContent: "center" }}>
         <div id="ToDoList">
-          <h3 className="header-footer">To Do List</h3>
-          <Link to="/newtodo">Add New To Do</Link>
           <br />
           {props.todos.length ? (
             TodoRows()

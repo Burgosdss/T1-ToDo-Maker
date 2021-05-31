@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 import "./LandingPage.css";
 
-const newTodoStyles = {
-  color: "#000000",
-  fontSize: "2rem"
-}
+// const newTodoStyles = {
+//   color: "#000000",
+//   fontSize: "2rem"
+// }
 
 const userStyles = {
   fontSize: "3rem",
@@ -21,9 +21,9 @@ const titleStyles = {
 export default function LandingPage(props) {
   const UserIsLogged = () => (
     <div className="LandingPage">
-      <Link to="/newtodo" style={newTodoStyles}>
+      {/* <Link to="/newtodo" style={newTodoStyles}>
         Add New To Do List Item{" "}
-      </Link>
+      </Link> */}
       &nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <br />

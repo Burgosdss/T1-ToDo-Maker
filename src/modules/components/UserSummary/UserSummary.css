@@ -44,4 +44,14 @@ button {
     background-color: white;
 }
 
+.form-control-todo {
+  width:20%;
+  font-size: 1rem;
+  padding: 0.4rem;
+  border: 2px solid black;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+}
+
 

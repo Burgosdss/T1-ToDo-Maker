@@ -9,7 +9,6 @@ import {
   LoginPage,
   UserSummaryPage,
   LandingPage,
-  NewToDoPage
 } from "modules/pages";
 
 class AppRouter extends Component {
@@ -35,14 +34,6 @@ class AppRouter extends Component {
     return <LandingPage user={this.props.user} history={history} />;
   };
 
-  NewTodoPage = ({ history }) => {
-    return userService.getUser() ? (
-      <NewToDoPage history={history} user={this.props.user} />
-    ) : (
-      <Redirect to="/login" />
-    );
-  };
-
   UserSummaryPage = ({ history }) => {
     return userService.getUser() ? (
       <UserSummaryPage
@@ -63,7 +54,6 @@ class AppRouter extends Component {
         <Route exact path="/" render={this.LandingPage} />
         <Route exact path="/signup" render={this.SignupPage} />
         <Route exact path="/login" render={this.LoginPage} />
-        <Route exact path="/newtodo" render={this.NewTodoPage} />
         <Route exact path="/user" render={this.UserSummaryPage} />
       </Switch>
     );

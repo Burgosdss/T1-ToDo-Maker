@@ -9,6 +9,8 @@ export default function UserSummaryPage(props) {
         user={props.user}
         todos={props.todos}
         handleUpdateTodos={props.handleUpdateTodos}
+        handleChangeToDo={props.handleChangeToDo}
+        updateToDo={props.updateToDo}
       />
     </div>
   );
