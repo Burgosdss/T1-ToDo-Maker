@@ -37,6 +37,7 @@ export default function UserSummary(props) {
     try {
       await todoService.create(state, props.user);
       props.history.push("/user");
+      setState({text: ''})
       refreshContent();
     } catch (error) {}
   }
